@@ -1,0 +1,21 @@
+pipeline {
+  agent {
+    docker {
+      image "mswright/playwright"
+    }
+  }
+
+  stages {
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+
+    stage('Run tests') {
+      steps {
+        sh 'npx playwright test Pomtest.spec.js'
+      }
+    }
+  }
+}
